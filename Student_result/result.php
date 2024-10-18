@@ -1,5 +1,5 @@
 <?php
-
+//student result calculation
 $marks=55;
 
 switch($marks){
