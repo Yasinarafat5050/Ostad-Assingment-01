@@ -1,37 +1,69 @@
 <?php
-//student result calculation
-$marks=55;
+function calculateResult($math,$science,$arabic,$english,$islamic){
+    
+    $total_marks = $math + $science + $arabic + $english + $islamic;
+    $subject_count = 5;
+    $average_marks = $total_marks / $subject_count;
 
-switch($marks){
-    case $marks<=100 && $marks>=80;
-    echo "Your Grade is A+";
-    break;
+    if($math < 33 || $science < 33 || $arabic < 33 || $english < 33 || $islamic < 33){
+    return[
+        'total_marks' => $total_marks,
+        'average_marks' => $average_marks,
+        'grade' => 'failed(You have marks less than 33 in one or more subjects)'
+    ];
+    }
 
-    case $marks<80 && $marks>=70;
-    echo "Your Grade is A";
-    break;
-
-    case $marks<70 && $marks>=60;
-    echo "Your Grade is A-";
-    break;
-
-    case $marks<60 && $marks>=50;
-    echo "Your Grade is B";
-    break;
-
-    case $marks<50 && $marks>=40;
-    echo "Your Grade is C";
-    break;
-
-    case $marks<40 && $marks>=33;
-    echo "Your Grade is D";
-    break;
-
-    case $marks<33 && $marks>=0;
-    echo "Your Grade is F (you have marks less than 33)";
-    break;
-
+    switch (true) {
+    case ($average_marks <= 100 && $average_marks >= 80):
+            $grade = "A+";
+            break;
+    case ($average_marks < 80 && $average_marks >= 70):
+            $grade = "A";
+            break;
+    case ($average_marks < 70 && $average_marks >= 60):
+            $grade = "A-";
+            break;
+    case ($average_marks < 60 && $average_marks >= 50):
+            $grade = "B";
+            break;
+    case ($average_marks < 50 && $average_marks >= 40):
+            $grade = "C";
+            break;
+    case ($average_marks < 40 && $average_marks >= 34):
+            $grade = "D";
+            break;
+    case ($average_marks < 34 && $average_marks >= 0):
+            $grade = "F";
+            break;      
     default:
-    echo "Enter Valid Marks";
-    break;
+            $grade = "invalid input";
+            break;
+
+    }
+
+    return[
+    'total_marks' => $total_marks,
+    'average_marks' => $average_marks,
+    'grade' => $grade,
+    'result' => 'passed'
+    ];
+
+    
 }
+
+$math = 85;
+$science = 90;
+$islamic = 95;
+$english = 50;
+$arabic = 32;
+
+
+$result = calculateResult($math,$science,$islamic,$english,$arabic);
+
+echo "Total Marks:" . $result['total_marks']."<br>";
+echo "Average Marks:". number_format($result['average_marks'],2)."<br>";
+echo "Grade:". $result['grade']."<br>";
+
+
+
+
