@@ -1,3 +1,6 @@
+
+<!-- Student_result/result.php -->
+    <!-- task 2 -->
 <?php
 function calculateResult($math,$science,$arabic,$english,$islamic){
     
